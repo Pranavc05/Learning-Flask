@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -16,7 +16,11 @@ class Todo (db.Model):
 
 @app.route('/', methods={'POST','GET'})
 def index():
-    return render_template('index.html')
+    if request.method=='POST':
+        task_content= request.form['content']
+        new_task= Todo(content )
+    else:
+        return render_template('index.html')
 
 
 if __name__ == "__main__":
